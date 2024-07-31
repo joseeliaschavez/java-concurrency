@@ -15,22 +15,17 @@ public class PlatformThreadLimitsTests {
         var maxThreads = 8192;
 
         // Act, Assert
-        assertThrows(
-                OutOfMemoryError.class,
-                () -> {
-                    IntStream.range(0, maxThreads)
-                            .forEach(
-                                    i -> {
-                                        var thread = Thread.ofPlatform().name("platform-thread-" + i);
-                                        thread.start(
-                                                () -> {
-                                                    try {
-                                                        Thread.sleep(1_000L);
-                                                    } catch (InterruptedException e) {
-                                                        throw new RuntimeException(e);
-                                                    }
-                                                });
-                                    });
+        assertThrows(OutOfMemoryError.class, () -> {
+            IntStream.range(0, maxThreads).forEach(i -> {
+                var thread = Thread.ofPlatform().name("platform-thread-" + i);
+                thread.start(() -> {
+                    try {
+                        Thread.sleep(1_000L);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 });
+            });
+        });
     }
 }

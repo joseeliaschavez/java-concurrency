@@ -10,9 +10,9 @@ spotless {
         cleanthat()
 
         // Formatting rules.
-        googleJavaFormat()
-        indentWithTabs(2)
-        indentWithSpaces(4)
+        palantirJavaFormat()
+//        indentWithTabs(2)
+//        indentWithSpaces(4)
 
         formatAnnotations() // fixes formatting of type annotations
 
