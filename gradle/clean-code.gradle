@@ -11,6 +11,8 @@ spotless {
 
         // Formatting rules.
         googleJavaFormat()
+        indentWithTabs(2)
+        indentWithSpaces(4)
 
         formatAnnotations() // fixes formatting of type annotations
 
