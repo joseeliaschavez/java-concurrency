@@ -1,13 +1,14 @@
 /* Copyright © 2024 Jose Chavez. All Rights Reserved. */
 package com.rangerforce.concurrency;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.concurrent.atomic.AtomicReference;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 @Execution(ExecutionMode.SAME_THREAD)
 public class PlatformThreadTests {
@@ -51,5 +52,20 @@ public class PlatformThreadTests {
 
         // Assert
         assertEquals(expected, task.getNumber());
+    }
+
+    @ParameterizedTest
+    @MethodSource("com.rangerforce.concurrency.FibonacciNumbers#fibonacciNumbers")
+    public void given_FibonacciSequenceTasks_when_join_then_executes(int n, int fibonacciNumber) {
+        // Arrange
+        var task = new FibonacciSequenceTask(n);
+        var thread = Thread.ofPlatform().name("platform-thread").unstarted(task);
+
+        // Act
+        thread.start();
+
+        // Assert
+        assertDoesNotThrow(() -> thread.join());
+        assertEquals(fibonacciNumber, task.getResult());
     }
 }

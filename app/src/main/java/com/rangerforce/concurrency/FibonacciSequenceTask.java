@@ -12,6 +12,15 @@ public class FibonacciSequenceTask implements Runnable {
 
     @Override
     public void run() {
+        if (iterations == 0) {
+            return;
+        }
+
+        if (iterations == 1) {
+            result = 1;
+            return;
+        }
+
         int x = 0;
         int y = 1;
         for (int i = 1; i < iterations; i++) {
