@@ -12,6 +12,8 @@ plugins {
     id "com.diffplug.spotless" version "6.+"
 }
 
+apply from: '../gradle/clean-code.gradle'
+
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
@@ -58,3 +60,5 @@ tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
+
+check.dependsOn spotlessCheck
