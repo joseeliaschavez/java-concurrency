@@ -14,6 +14,8 @@ public class PowerRangerClientMockImpl implements PowerRangerClient {
 
     @Override
     public MegazordResponse fetchMegazord(String megazordId) {
+        log.debug("Fetching megazord: {}", megazordId);
+
         try {
             Thread.sleep(Duration.ofMillis(getDelay()));
         } catch (InterruptedException e) {
@@ -32,6 +34,8 @@ public class PowerRangerClientMockImpl implements PowerRangerClient {
 
     @Override
     public ZordResponse fetchZord(String zordId) {
+        log.debug("Fetching zord: {}", zordId);
+
         try {
             Thread.sleep(Duration.ofMillis(getDelay()));
         } catch (InterruptedException e) {
@@ -51,6 +55,8 @@ public class PowerRangerClientMockImpl implements PowerRangerClient {
 
     @Override
     public PowerRangerResponse fetchPowerRanger(String rangerId) {
+        log.debug("Fetching power ranger: {}", rangerId);
+
         try {
             Thread.sleep(Duration.ofMillis(getDelay()));
         } catch (InterruptedException e) {
@@ -69,6 +75,6 @@ public class PowerRangerClientMockImpl implements PowerRangerClient {
     }
 
     private long getDelay() {
-        return ThreadLocalRandom.current().nextLong(500);
+        return ThreadLocalRandom.current().nextLong(100);
     }
 }

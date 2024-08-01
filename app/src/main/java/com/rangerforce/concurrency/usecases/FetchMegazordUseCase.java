@@ -62,6 +62,8 @@ public class FetchMegazordUseCase {
         var powerRangerClient = new PowerRangerClientMockImpl();
         var fetchMegazordUseCase = new FetchMegazordUseCase(powerRangerClient);
 
+        log.info("Total CPU Cores: {}", Runtime.getRuntime().availableProcessors());
+
         stopWatch.start();
         var megazord = fetchMegazordUseCase.fetch("megazord-0");
         var duration = stopWatch.stop();
