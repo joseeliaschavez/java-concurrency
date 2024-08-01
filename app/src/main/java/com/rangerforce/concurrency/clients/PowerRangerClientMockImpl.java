@@ -1,13 +1,13 @@
+/* Copyright © 2024 Jose Chavez. All Rights Reserved. */
 package com.rangerforce.concurrency.clients;
 
 import com.rangerforce.concurrency.clients.datum.MegazordResponse;
 import com.rangerforce.concurrency.clients.datum.PowerRangerResponse;
 import com.rangerforce.concurrency.clients.datum.ZordResponse;
-import lombok.extern.slf4j.Slf4j;
-
 import java.time.Duration;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class PowerRangerClientMockImpl implements PowerRangerClient {

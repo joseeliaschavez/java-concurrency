@@ -6,9 +6,9 @@ import com.rangerforce.concurrency.clients.PowerRangerClientMockImpl;
 import com.rangerforce.concurrency.domain.models.Megazord;
 import com.rangerforce.concurrency.domain.models.PowerRanger;
 import com.rangerforce.concurrency.domain.models.Zord;
-import java.util.concurrent.CompletableFuture;
-
 import com.rangerforce.concurrency.util.Stopwatch;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,19 +20,28 @@ public class FetchMegazordUseCase {
     public Megazord fetch(String megazordId) {
         var megazord = new Megazord();
 
-        var future = CompletableFuture.supplyAsync(() -> powerRangerClient.fetchMegazord(megazordId))
+        CompletableFuture.supplyAsync(() -> powerRangerClient.fetchMegazord(megazordId))
                 .thenApply(megazordResponse -> {
                     megazord.setName(megazordResponse.getName());
                     return megazordResponse.getZordIds();
                 })
-                .thenCompose(zordIds -> CompletableFuture.allOf(zordIds.stream()
-                                .map(zordId -> CompletableFuture.supplyAsync(() -> fetchZord(zordId))
-                                        .thenAccept(zord -> megazord.getZords().add(zord.join())))
-                                .toArray(CompletableFuture[]::new))
-                        .thenApply(v -> megazord))
+                .thenComposeAsync(this::fetchAllZords)
+                .thenApply(zords -> {
+                    megazord.setZords(zords);
+                    return zords.stream().map(Zord::getPilot).toList();
+                })
+                .thenAccept(megazord::setPilots)
                 .join();
 
         return megazord;
+    }
+
+    private CompletableFuture<List<Zord>> fetchAllZords(List<String> zordIds) {
+        var zordFutures = zordIds.stream().map(this::fetchZord).toList();
+
+        return CompletableFuture.allOf(zordFutures.toArray(new CompletableFuture[0]))
+                .thenApply(
+                        v -> zordFutures.stream().map(CompletableFuture::join).toList());
     }
 
     private CompletableFuture<Zord> fetchZord(String zordId) {

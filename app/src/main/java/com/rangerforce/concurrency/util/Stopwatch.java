@@ -1,3 +1,4 @@
+/* Copyright © 2024 Jose Chavez. All Rights Reserved. */
 package com.rangerforce.concurrency.util;
 
 public class Stopwatch {
