@@ -1,5 +1,5 @@
 /* Copyright © 2024 Jose Chavez. All Rights Reserved. */
-package com.rangerforce.concurrency;
+package com.rangerforce.concurrency.tasks;
 
 public class FibonacciSequenceTask implements Runnable {
     private final int iterations;

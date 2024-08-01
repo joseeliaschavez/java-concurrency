@@ -3,6 +3,8 @@ package com.rangerforce.concurrency;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.rangerforce.concurrency.tasks.FibonacciSequenceTask;
+import com.rangerforce.concurrency.tasks.SetNumberTask;
 import java.util.concurrent.atomic.AtomicReference;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;

@@ -3,6 +3,7 @@ package com.rangerforce.concurrency;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import com.rangerforce.concurrency.tasks.FibonacciSequenceTask;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 
