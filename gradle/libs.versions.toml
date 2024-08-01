@@ -3,8 +3,15 @@
 
 [versions]
 guava = "33.1.0-jre"
-junit-jupiter = "5.10.2"
+instancio = "4.+"
+junit-jupiter = "5.10.+"
+lombok = "1.18.+"
+mockito = "5.+"
 
 [libraries]
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
+instancio = { module = "org.instancio:instancio-junit", version.ref = "instancio" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+mockito = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }

@@ -27,6 +27,15 @@ dependencies {
 
     // This dependency is used by the application.
     implementation libs.guava
+
+    // Mocks
+    testImplementation libs.instancio
+    testImplementation libs.mockito
+    testImplementation libs.mockito.junit.jupiter
+
+    // Lombok
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
