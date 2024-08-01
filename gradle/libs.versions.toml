@@ -5,13 +5,17 @@
 guava = "33.1.0-jre"
 instancio = "4.+"
 junit-jupiter = "5.10.+"
+logback = "1.5.+"
 lombok = "1.18.+"
 mockito = "5.+"
+slf4j = "2.0.+"
 
 [libraries]
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
 instancio = { module = "org.instancio:instancio-junit", version.ref = "instancio" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
 mockito = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
+slf4j = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
