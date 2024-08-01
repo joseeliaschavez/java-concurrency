@@ -44,6 +44,7 @@ public class FetchMegazordUseCase {
                         v -> zordFutures.stream().map(CompletableFuture::join).toList());
     }
 
+    // TODO can simplify this by removing call to fetchPowerRanger
     private CompletableFuture<Zord> fetchZord(String zordId) {
         return CompletableFuture.supplyAsync(() -> powerRangerClient.fetchZord(zordId))
                 .thenComposeAsync(
