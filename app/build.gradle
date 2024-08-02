@@ -69,6 +69,19 @@ test {
     }
 }
 
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs += "--enable-preview"
+    options.compilerArgs += "-Xlint:preview"
+}
+
+tasks.withType(Test).configureEach {
+    jvmArgs += "--enable-preview"
+}
+
+tasks.withType(JavaExec).configureEach {
+    jvmArgs += "--enable-preview"
+}
+
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()

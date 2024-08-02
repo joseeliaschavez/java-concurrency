@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Slf4j
-public class FetchZordUseCaseViaCompletableFutureImpl implements FetchZordUseCase {
+public class FetchZordUseCaseImpl implements FetchZordUseCase {
     private final PowerRangerClient powerRangerClient;
 
     @Override
@@ -36,7 +36,7 @@ public class FetchZordUseCaseViaCompletableFutureImpl implements FetchZordUseCas
     public static void main(String[] args) {
         var stopWatch = new Stopwatch();
         var powerRangerClient = new PowerRangerClientMockImpl();
-        var fetchZordUseCase = new FetchZordUseCaseViaCompletableFutureImpl(powerRangerClient);
+        var fetchZordUseCase = new FetchZordUseCaseImpl(powerRangerClient);
 
         log.info("Total CPU Cores: {}", Runtime.getRuntime().availableProcessors());
 
